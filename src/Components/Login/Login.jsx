@@ -3,11 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import '../../App.css';
+import TextField from '@mui/material/TextField';
+import { loginData } from '../../Redux/Login/action';
 
 export const Login = () => {
     const [data,setData] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const {register} = useSelector((store)=>store.register)
+
+    console.log('register:', register)
+
+    
+
     const handleChange = (e) => {
         const {name,value} = e.target;
         console.log('value:', value)
@@ -24,7 +33,7 @@ export const Login = () => {
         navigate('/');
     }
     const store = useSelector((store)=>store.login);
-    console.log('store:', store)
+    console.log('store:ssssss', store)
     if(store.isAuthenticated){
         navigate('/');
     }
@@ -34,8 +43,8 @@ export const Login = () => {
         <div className='App'>
             <h1>Login!</h1>
             <form onSubmit={handleSubmit} style={{display:"flex",flexDirection:"column",padding:"10px",width: "30%", border: "1px solid black",borderRadius: "5px",margin:"auto"}}>
-                <TextField id="outlined-basic" name='username'
-                type="text" label="Username" 
+                <TextField id="outlined-basic" name='email'
+                type="text" label="email" 
                 onChange={handleChange}
                 variant="outlined" style={{marginBottom:"10px"}} />
                 <TextField id="outlined-basic" name='password'

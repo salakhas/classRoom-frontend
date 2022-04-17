@@ -12,7 +12,7 @@ const loginReducer = (store = initState,{type,payload}) => {
         case LOGIN_LOADING:
             return {...store,loading: true};
         case LOGIN_SUCCESS:
-            return {...store,loading:false,isAuthenticated:true,token:payload,error:true};
+            return {...store,loading:false,isAuthenticated:true,token:payload,error:false};
         case LOGIN_FAILURE:
             return {...store,loading:false,error:true,isAuthenticated:false};
         default:

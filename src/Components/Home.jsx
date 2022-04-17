@@ -8,10 +8,12 @@ import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getTeachers, getTeachersData } from '../Redux/Teachers/action';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 export const Home = () => {
     const {teachers} = useSelector((store)=>store.teachers);
+    const navigate = useNavigate();
     const reduxDispatch = useDispatch();
     console.log('teachers:>>>', teachers)
     const displayArray = teachers.teachers;
@@ -44,7 +46,8 @@ export const Home = () => {
       </CardContent>
       <CardActions>
         <Button size="small" style={{width:"50%",margin:"auto"}} onClick={()=>{
-          
+          console.log("hi")
+            navigate(`teacher/${el._id}`);
         }}>Learn More</Button>
       </CardActions>
     </Card>

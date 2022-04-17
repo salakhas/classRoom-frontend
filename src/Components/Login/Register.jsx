@@ -5,7 +5,8 @@ import { useState } from 'react';
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { registerData } from '../../Redux/Login/action';
+import { registerData} from "../../Redux/Register/action"
+import {useSelector} from "react-redux";
 
 
 
@@ -13,11 +14,19 @@ export const Register = () => {
     const [data,setData] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {register} = useSelector((store)=>store.register)
+
+    console.log('register:', register)
 
     const handleChange = (e) => {
-        const {name,value} = e.target;
+        let {name,value} = e.target;
         console.log('value:', value)
         console.log('name:', name)
+        if(name==="role"){
+            value = [value];
+            console.log('value:', value)
+        }
+
         setData({
             ...data,
             [name]:value,
@@ -26,15 +35,7 @@ export const Register = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://classroom325.herokuapp.com/register',data)
-        .then((res)=>{
-            console.log('res:', res.data);
-            alert("Register Successful");
-            navigate('/login')
-        })
-        .catch((err)=>{
-            console.log('err:', err);
-        })
+       dispatch(registerData(data));
     }
 
     return (
@@ -51,10 +52,7 @@ export const Register = () => {
                 <TextField id="outlined-basic" name='password'
                 onChange={handleChange}
                  type="password" label="Password" variant="outlined" style={{marginBottom:"10px"}} />
-                 <TextField id="outlined-basic" name='username'
-                type="text" label="Username" 
-                onChange={handleChange}
-                variant="outlined" style={{marginBottom:"10px"}} />
+                
                 <TextField id="outlined-basic" name='role'
                 type="text" label="role" 
                 onChange={handleChange}
