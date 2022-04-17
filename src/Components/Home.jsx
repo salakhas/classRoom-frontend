@@ -24,7 +24,7 @@ export const Home = () => {
         <h1>Home</h1>
         <div style={{display:"grid",gridTemplateColumns:"auto auto",gap:"20px",padding:"30px",width:"60%"
       ,margin:"auto"}}>
-          {displayArray.map((el)=>{
+          {displayArray?.map((el)=>{
             return (
               <>
                 <Card sx={{ maxWidth: 345 }}>
@@ -43,7 +43,9 @@ export const Home = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" style={{width:"20%"}}>Learn More</Button>
+        <Button size="small" style={{width:"50%",margin:"auto"}} onClick={()=>{
+          
+        }}>Learn More</Button>
       </CardActions>
     </Card>
               </>

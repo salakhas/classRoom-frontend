@@ -26,7 +26,7 @@ export const Register = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://masai-api-mocker.herokuapp.com/auth/register',data)
+        axios.post('https://classroom325.herokuapp.com/register',data)
         .then((res)=>{
             console.log('res:', res.data);
             alert("Register Successful");
@@ -55,14 +55,11 @@ export const Register = () => {
                 type="text" label="Username" 
                 onChange={handleChange}
                 variant="outlined" style={{marginBottom:"10px"}} />
-                <TextField id="outlined-basic" name='mobile'
-                type="text" label="Mobile" 
+                <TextField id="outlined-basic" name='role'
+                type="text" label="role" 
                 onChange={handleChange}
                 variant="outlined" style={{marginBottom:"10px"}} />
-                <TextField id="outlined-basic" name='description'
-                type="text" label="Description" 
-                onChange={handleChange}
-                variant="outlined" style={{marginBottom:"10px"}} /><br/>
+               
                 <input style={{padding: "15px"}} type="submit" value="Register" />
             </form>
             <div className='App'>

@@ -28,13 +28,13 @@ export const getTeachers = (payload) => ({
 
 export const getTeachersData = () => async(dispatch)=>{
     console.log("hello")
-   // dispatch(dispatch(teachersLoading()));
+   dispatch(teachersLoading());
     axios.get("https://classroom325.herokuapp.com/teacher")
     .then((res)=>{
         console.log('res', res.data)
         dispatch(getTeachers(res.data))})
     .catch((err)=>{
-        dispatch(teachersFailure());
         console.log('err:', err)});
+        dispatch(teachersFailure());
         
 }
